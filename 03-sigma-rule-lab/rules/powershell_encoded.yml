@@ -1,0 +1,37 @@
+title: PowerShell Encoded Command Execution
+id: 65f0b71b-3e6d-4a96-80bb-31d8d5a24011
+status: experimental
+description: Detects PowerShell execution using encoded command arguments.
+author: Security Micro-Labs
+date: 2026-11-19
+
+logsource:
+  category: process_creation
+  product: windows
+
+detection:
+  selection:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+    CommandLine|contains:
+      - '-EncodedCommand'
+      - '-enc '
+      - '-e '
+  condition: selection
+
+fields:
+  - Image
+  - CommandLine
+  - ParentImage
+  - User
+
+falsepositives:
+  - Legitimate administrative scripts
+  - Automation and software deployment tools
+
+level: medium
+
+tags:
+  - attack.execution
+  - attack.t1059.001

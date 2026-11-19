@@ -1,0 +1,42 @@
+{
+    "rule": {
+        "title": "PowerShell Encoded Command Execution",
+        "id": "65f0b71b-3e6d-4a96-80bb-31d8d5a24011",
+        "level": "medium"
+    },
+    "summary": {
+        "events_analyzed": 4,
+        "matches": 2,
+        "non_matches": 2
+    },
+    "matches": [
+        {
+            "event_index": 0,
+            "event": {
+                "EventID": 1,
+                "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+                "CommandLine": "powershell.exe -NoProfile -EncodedCommand SQBFAFgA",
+                "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+                "User": "CORP\\alice"
+            }
+        },
+        {
+            "event_index": 1,
+            "event": {
+                "EventID": 1,
+                "Image": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+                "CommandLine": "pwsh.exe -enc SQBFAFgA",
+                "ParentImage": "C:\\Windows\\explorer.exe",
+                "User": "CORP\\bob"
+            }
+        }
+    ],
+    "engine": {
+        "supported_condition": "selection",
+        "supported_modifiers": [
+            "contains",
+            "endswith"
+        ],
+        "case_sensitive": false
+    }
+}

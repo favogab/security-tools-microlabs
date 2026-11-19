@@ -1,0 +1,30 @@
+[
+  {
+    "EventID": 1,
+    "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "CommandLine": "powershell.exe -NoProfile -EncodedCommand SQBFAFgA",
+    "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+    "User": "CORP\\alice"
+  },
+  {
+    "EventID": 1,
+    "Image": "C:\\Program Files\\PowerShell\\7\\pwsh.exe",
+    "CommandLine": "pwsh.exe -enc SQBFAFgA",
+    "ParentImage": "C:\\Windows\\explorer.exe",
+    "User": "CORP\\bob"
+  },
+  {
+    "EventID": 1,
+    "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+    "CommandLine": "powershell.exe Get-Process",
+    "ParentImage": "C:\\Windows\\explorer.exe",
+    "User": "CORP\\charlie"
+  },
+  {
+    "EventID": 1,
+    "Image": "C:\\Windows\\System32\\cmd.exe",
+    "CommandLine": "cmd.exe /c echo -EncodedCommand",
+    "ParentImage": "C:\\Windows\\explorer.exe",
+    "User": "CORP\\david"
+  }
+]

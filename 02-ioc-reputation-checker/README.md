@@ -1,29 +1,37 @@
-# IOC Reputation Checker
+# 02 — IOC Reputation Checker
 
-A Python-based cybersecurity automation tool that checks the reputation of public IPv4 addresses using the AbuseIPDB threat intelligence API.
+A Python command-line tool that validates IPv4 indicators and queries the AbuseIPDB check endpoint for eligible public addresses.
 
-The tool helps security analysts enrich IP indicators with reputation data during incident investigation and triage.
+It demonstrates how an analyst can enrich IP indicators with third-party reputation context during an investigation.
+
+## Problem
+
+An IP address found in a log or incident report is not automatically malicious. Analysts need contextual information—such as an abuse confidence score, report count, country and ISP—to help decide what to investigate next.
+
+This lab retrieves that context from AbuseIPDB. It does not make a definitive malicious-or-benign decision.
 
 ## Features
 
-- Validates IPv4 addresses before querying the API.
-- Skips private, reserved, and invalid IP addresses.
-- Retrieves abuse confidence scores, report counts, country codes, ISP information, and last reported dates.
-- Removes duplicate IP addresses to avoid unnecessary API requests.
-- Handles HTTP and API errors without stopping the entire investigation.
-- Exports structured investigation results to JSON.
-- Includes automated tests with mocked API responses.
+- Reads IPv4 indicators from `samples/ips.json`.
+- Accepts only strings that parse as IPv4 addresses and are considered globally routable by Python's `ipaddress` module.
+- Skips invalid, private, reserved, non-global and non-string values.
+- Removes duplicate input addresses while preserving their first-seen order.
+- Queries AbuseIPDB with `maxAgeInDays=90` and a 10-second request timeout.
+- Normalizes selected response fields into a consistent result structure.
+- Continues processing after handled request, response-value or missing-key errors.
+- Writes checked indicators, skipped indicators and errors to `reputation_report.json`.
+- Includes tests that mock the HTTP response; the tests do not require a live API request.
 
 ## Technologies
 
 - Python 3
 - Requests
-- Python-dotenv
-- Pytest
+- python-dotenv
 - AbuseIPDB API
-- JSON
+- `ipaddress`, `json` and `pathlib`
+- pytest
 
-## Project Structure
+## Project structure
 
 ```text
 02-ioc-reputation-checker/
@@ -32,19 +40,21 @@ The tool helps security analysts enrich IP indicators with reputation data durin
 ├── tests/
 │   └── test_reputation.py
 ├── reputation.py
-├── reputation_report.json
+├── reputation_report.json   # generated output
 └── README.md
 ```
 
-## Installation
+Create a local `.env` file in this directory for your API key. Do not commit that file.
 
-Install the required dependencies:
+## Installation and configuration
 
-```bash
+Install the dependencies:
+
+```powershell
 python -m pip install requests python-dotenv pytest
 ```
 
-Create a `.env` file inside the project directory:
+Create `.env` in the project directory:
 
 ```dotenv
 ABUSEIPDB_API_KEY=your_api_key_here
@@ -52,31 +62,53 @@ ABUSEIPDB_API_KEY=your_api_key_here
 
 Obtain an API key from [AbuseIPDB](https://www.abuseipdb.com/).
 
-**Security:** Never commit your `.env` file or API credentials to GitHub.
+The script loads `.env` relative to its own project directory. If the key is missing, it prints an error and exits without querying the API.
 
-## Usage
+**Security:** Never commit `.env` or expose API credentials in screenshots, logs or source control.
 
-Add the IP addresses you want to investigate to `samples/ips.json`:
+## Input
+
+Edit `samples/ips.json`:
 
 ```json
 {
   "ipv4": [
     "8.8.8.8",
     "1.1.1.1",
-    "192.0.2.55"
+    "192.0.2.55",
+    "999.999.999.999"
   ]
 }
 ```
 
-Run the program:
+The sample includes two public resolver addresses, one documentation-only reserved address and one invalid IPv4 value.
 
-```bash
+## Run
+
+From this directory:
+
+```powershell
 python reputation.py
 ```
 
-The script validates the IP addresses, queries AbuseIPDB for eligible public IPv4 addresses, and saves the findings to `reputation_report.json`.
+For each eligible address, the script requests the AbuseIPDB `/api/v2/check` endpoint and records:
 
-## Example Output
+- IP address
+- Abuse confidence score
+- Total report count
+- Country code
+- ISP
+- Last reported timestamp
+
+The output JSON has three top-level lists:
+
+- `checked` — successfully normalized provider results
+- `skipped` — values that failed the public IPv4 eligibility check
+- `errors` — eligible addresses whose request or response processing failed
+
+The input and output paths are fixed relative to the script. Command-line input/output arguments are not currently implemented.
+
+## Example report shape
 
 ```json
 {
@@ -91,39 +123,41 @@ The script validates the IP addresses, queries AbuseIPDB for eligible public IPv
     }
   ],
   "skipped": [
-    "192.0.2.55"
+    "192.0.2.55",
+    "999.999.999.999"
   ],
   "errors": []
 }
 ```
 
-*Example values are illustrative snapshots and may differ from current AbuseIPDB results.*
+The values above are illustrative. Provider results change over time and may differ between runs.
 
-## Testing
+## Tests
 
-Run the automated tests:
+Run:
 
-```bash
+```powershell
 python -m pytest -v
 ```
 
-The tests cover IP validation and successful API response handling. HTTP requests are mocked during testing, so no real API requests are needed.
+The included tests cover public IPv4 acceptance, invalid/reserved/private address rejection, IPv6 rejection and normalization of a mocked successful AbuseIPDB response.
 
-## Limitations
+The API test uses a fake key and a mocked HTTP response. It does not contact AbuseIPDB.
 
-- Supports IPv4 addresses only.
-- Requires an active AbuseIPDB API key and internet connection.
-- Processes IP addresses from a predefined JSON file.
-- Does not automatically classify IP addresses as malicious.
-- Reputation information depends on third-party reporting and may change over time.
+## Interpretation and limitations
 
-## Future Improvements
+- Supports IPv4 only; IPv6 is explicitly rejected.
+- Requires an AbuseIPDB API key and network access for live checks.
+- Results depend on AbuseIPDB's reporting data, coverage, age window and account limits.
+- The configured report age window is 90 days.
+- The script records provider data; it does not apply a severity threshold or label an address definitively malicious.
+- A zero abuse score or absence of reports does not prove that an address is safe.
+- Reputation should be assessed alongside network, endpoint, identity and incident context.
 
-- Command-line arguments for custom input files.
-- Additional API error-handling tests.
-- Configurable reputation thresholds.
-- Integration with the IOC Extractor project.
+## Future improvements
 
-## Security Considerations
-
-Reputation scores should support analyst investigations, not replace contextual analysis. A high number of abuse reports does not necessarily establish malicious activity.
+- Add command-line input and output paths.
+- Add tests for HTTP errors, timeouts and malformed provider responses.
+- Make the report age window configurable.
+- Add explicit rate-limit handling and retry/backoff behavior.
+- Accept validated IPv4 indicators from Lab 01 as an input source.

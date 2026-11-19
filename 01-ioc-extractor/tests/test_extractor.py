@@ -55,3 +55,16 @@ def test_empty_report():
         "urls": [],
         "sha256": [],
     }
+
+def test_exe_filename_not_extracted_as_domain():
+    text = """
+    Downloaded payload:
+    https://malware-delivery.example/payload.exe
+    """
+
+    domains = extract_domains(text)
+    urls = extract_urls(text)
+
+    assert "payload.exe" not in domains
+    assert "malware-delivery.example" in domains
+    assert "https://malware-delivery.example/payload.exe" in urls

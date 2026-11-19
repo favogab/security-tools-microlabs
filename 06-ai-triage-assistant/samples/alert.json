@@ -1,0 +1,25 @@
+
+{
+    "alert_id": "SOC-2026-0042",
+    "alert_name": "Suspicious PowerShell Execution",
+    "timestamp": "2026-11-19T09:45:00Z",
+    "severity": "high",
+    "hostname": "WIN11-LAB",
+    "username": "analyst-user",
+    "process": {
+        "image": "powershell.exe",
+        "command_line": "powershell.exe -ExecutionPolicy Bypass -File C:\\Users\\analyst-user\\Downloads\\update.ps1",
+        "parent_image": "WINWORD.EXE",
+        "process_id": 4820
+    },
+    "network": {
+        "destination_ip": "198.51.100.42",
+        "destination_port": 443,
+        "protocol": "TCP"
+    },
+    "evidence": [
+        "PowerShell was launched with ExecutionPolicy Bypass.",
+        "WINWORD.EXE was the parent process.",
+        "The process initiated an outbound connection."
+    ]
+}

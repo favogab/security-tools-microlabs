@@ -245,3 +245,11 @@ __marimo__/
 # Lab 05 generated reports
 05-threat-intel-enricher/enrichment_report.json
 05-threat-intel-enricher/enrichment_report.md
+
+
+# Micro-Lab 06
+06-ai-triage-assistant/.env
+06-ai-triage-assistant/triage_report.json
+06-ai-triage-assistant/triage_report.md
+
+

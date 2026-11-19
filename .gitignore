@@ -237,3 +237,11 @@ __marimo__/
 
 # Generated investigation reports
 04-process-tree-analyzer/*_report.json
+
+
+# Lab 05 private configuration
+05-threat-intel-enricher/.env
+
+# Lab 05 generated reports
+05-threat-intel-enricher/enrichment_report.json
+05-threat-intel-enricher/enrichment_report.md

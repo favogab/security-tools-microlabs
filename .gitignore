@@ -225,3 +225,15 @@ __marimo__/
 .env
 .env.*
 !.env.example
+
+
+# VS Code settings
+.vscode/
+**/.vscode/
+
+# Real endpoint telemetry
+04-process-tree-analyzer/samples/real_sysmon_events.json
+04-process-tree-analyzer/real_process_tree_report.json
+
+# Generated investigation reports
+04-process-tree-analyzer/*_report.json

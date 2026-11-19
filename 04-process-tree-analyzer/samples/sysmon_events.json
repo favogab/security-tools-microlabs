@@ -1,0 +1,80 @@
+[
+    {
+        "EventID": 1,
+        "UtcTime": "2026-11-19 08:00:00.000",
+        "ProcessGuid": "{11111111-1111-1111-1111-111111111111}",
+        "ProcessId": 4100,
+        "Image": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+        "CommandLine": "\"C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE\" report.docm",
+        "User": "CORP\\analyst",
+        "ParentProcessGuid": "{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}",
+        "ParentProcessId": 1200,
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "ParentCommandLine": "C:\\Windows\\explorer.exe"
+    },
+    {
+        "EventID": 1,
+        "UtcTime": "2026-11-19 08:00:05.000",
+        "ProcessGuid": "{22222222-2222-2222-2222-222222222222}",
+        "ProcessId": 4200,
+        "Image": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "CommandLine": "powershell.exe -NoProfile -WindowStyle Hidden -Command Get-Date",
+        "User": "CORP\\analyst",
+        "ParentProcessGuid": "{11111111-1111-1111-1111-111111111111}",
+        "ParentProcessId": 4100,
+        "ParentImage": "C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+        "ParentCommandLine": "\"C:\\Program Files\\Microsoft Office\\root\\Office16\\WINWORD.EXE\" report.docm"
+    },
+    {
+        "EventID": 1,
+        "UtcTime": "2026-11-19 08:00:08.000",
+        "ProcessGuid": "{33333333-3333-3333-3333-333333333333}",
+        "ProcessId": 4300,
+        "Image": "C:\\Windows\\System32\\cmd.exe",
+        "CommandLine": "cmd.exe /c whoami",
+        "User": "CORP\\analyst",
+        "ParentProcessGuid": "{22222222-2222-2222-2222-222222222222}",
+        "ParentProcessId": 4200,
+        "ParentImage": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "ParentCommandLine": "powershell.exe -NoProfile -WindowStyle Hidden -Command Get-Date"
+    },
+    {
+        "EventID": 1,
+        "UtcTime": "2026-11-19 08:00:12.000",
+        "ProcessGuid": "{44444444-4444-4444-4444-444444444444}",
+        "ProcessId": 4400,
+        "Image": "C:\\Windows\\System32\\rundll32.exe",
+        "CommandLine": "rundll32.exe example.dll,EntryPoint",
+        "User": "CORP\\analyst",
+        "ParentProcessGuid": "{33333333-3333-3333-3333-333333333333}",
+        "ParentProcessId": 4300,
+        "ParentImage": "C:\\Windows\\System32\\cmd.exe",
+        "ParentCommandLine": "cmd.exe /c whoami"
+    },
+    {
+        "EventID": 1,
+        "UtcTime": "2026-11-19 08:05:00.000",
+        "ProcessGuid": "{55555555-5555-5555-5555-555555555555}",
+        "ProcessId": 5100,
+        "Image": "C:\\Windows\\System32\\notepad.exe",
+        "CommandLine": "notepad.exe notes.txt",
+        "User": "CORP\\analyst",
+        "ParentProcessGuid": "{AAAAAAAA-AAAA-AAAA-AAAA-AAAAAAAAAAAA}",
+        "ParentProcessId": 1200,
+        "ParentImage": "C:\\Windows\\explorer.exe",
+        "ParentCommandLine": "C:\\Windows\\explorer.exe"
+    },
+    {
+        "EventID": 1,
+        "UtcTime": "2026-11-19 08:06:00.000",
+        "ProcessGuid": "{66666666-6666-6666-6666-666666666666}",
+        "ProcessId": 5200,
+        "Image": "C:\\Windows\\System32\\wscript.exe",
+        "CommandLine": "wscript.exe login-check.vbs",
+        "User": "CORP\\analyst",
+        "ParentProcessGuid": "{BBBBBBBB-BBBB-BBBB-BBBB-BBBBBBBBBBBB}",
+        "ParentProcessId": 1300,
+        "ParentImage": "C:\\Program Files\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE",
+        "ParentCommandLine": "OUTLOOK.EXE"
+    }
+]

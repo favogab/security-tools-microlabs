@@ -1,4 +1,4 @@
-# 05 — Threat Intelligence Enricher
+﻿# 05 â€” Threat Intelligence Enricher
 
 A Python SOC automation tool that validates and normalizes indicators of compromise (IOCs), optionally enriches them with VirusTotal and AbuseIPDB, and generates JSON and Markdown investigation reports.
 
@@ -36,14 +36,14 @@ This lab creates a repeatable enrichment workflow while keeping offline validati
 
 ```text
 05-threat-intel-enricher/
-├── samples/
-│   └── iocs.json
-├── tests/
-│   └── test_enricher.py
-├── .env.example
-├── enricher.py
-├── requirements.txt
-└── README.md
+â”œâ”€â”€ samples/
+â”‚   â””â”€â”€ iocs.json
+â”œâ”€â”€ tests/
+â”‚   â””â”€â”€ test_enricher.py
+â”œâ”€â”€ .env.example
+â”œâ”€â”€ enricher.py
+â”œâ”€â”€ requirements.txt
+â””â”€â”€ README.md
 ```
 
 A local `.env` file is created during setup and must remain untracked. The generated `enrichment_report.json` and `enrichment_report.md` are output files.
@@ -158,3 +158,15 @@ The tests cover indicator classification and normalization, invalid values, dedu
 - Add more indicator types and normalization tests.
 - Add optional integration with the IOC Extractor output.
 - Add analyst-configurable enrichment policies.
+
+## Execution Screenshot
+
+![Threat Intelligence Enricher execution](../docs/screenshots/05-threat-intel-enricher.png)
+
+## Validation
+
+- 14 automated tests passed.
+- 8 indicators processed in offline mode.
+- 1 invalid indicator rejected.
+- 0 provider errors.
+- JSON and Markdown reports generated.

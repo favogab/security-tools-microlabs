@@ -1,4 +1,4 @@
-# 01 — IOC Extractor
+﻿# 01 â€” IOC Extractor
 
 A lightweight Python tool that extracts common indicators of compromise (IOCs) from an unstructured security incident report and writes the results to JSON.
 
@@ -21,12 +21,12 @@ This lab automates the initial extraction step. It does **not** determine whethe
 ## Technologies
 
 - Python 3
-- `re` — regular-expression matching
-- `ipaddress` — IPv4 validation
-- `urllib.parse` — URL parsing
-- `pathlib` — file paths and file I/O
-- `json` — structured output
-- pytest — automated tests
+- `re` â€” regular-expression matching
+- `ipaddress` â€” IPv4 validation
+- `urllib.parse` â€” URL parsing
+- `pathlib` â€” file paths and file I/O
+- `json` â€” structured output
+- pytest â€” automated tests
 
 The extraction workflow uses Python's standard library. pytest is needed to run the tests.
 
@@ -34,13 +34,13 @@ The extraction workflow uses Python's standard library. pytest is needed to run 
 
 ```text
 01-ioc-extractor/
-├── samples/
-│   └── report.txt
-├── tests/
-│   └── test_extractor.py
-├── extractor.py
-├── indicators.json       # generated output
-└── README.md
+â”œâ”€â”€ samples/
+â”‚   â””â”€â”€ report.txt
+â”œâ”€â”€ tests/
+â”‚   â””â”€â”€ test_extractor.py
+â”œâ”€â”€ extractor.py
+â”œâ”€â”€ indicators.json       # generated output
+â””â”€â”€ README.md
 ```
 
 ## Run
@@ -98,3 +98,7 @@ The test suite checks valid and invalid IPv4 extraction, duplicate removal, URL 
 - Improve domain validation to reduce filename-related false positives.
 - Add support for additional indicator types and edge cases.
 - Connect extracted indicators to a reputation or threat-intelligence workflow.
+
+## Execution Screenshot
+
+![IOC Extractor execution](../docs/screenshots/01-ioc-extractor.png)

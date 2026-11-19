@@ -1,4 +1,4 @@
-# 02 — IOC Reputation Checker
+﻿# 02 â€” IOC Reputation Checker
 
 A Python command-line tool that validates IPv4 indicators and queries the AbuseIPDB check endpoint for eligible public addresses.
 
@@ -6,7 +6,7 @@ It demonstrates how an analyst can enrich IP indicators with third-party reputat
 
 ## Problem
 
-An IP address found in a log or incident report is not automatically malicious. Analysts need contextual information—such as an abuse confidence score, report count, country and ISP—to help decide what to investigate next.
+An IP address found in a log or incident report is not automatically malicious. Analysts need contextual informationâ€”such as an abuse confidence score, report count, country and ISPâ€”to help decide what to investigate next.
 
 This lab retrieves that context from AbuseIPDB. It does not make a definitive malicious-or-benign decision.
 
@@ -35,13 +35,13 @@ This lab retrieves that context from AbuseIPDB. It does not make a definitive ma
 
 ```text
 02-ioc-reputation-checker/
-├── samples/
-│   └── ips.json
-├── tests/
-│   └── test_reputation.py
-├── reputation.py
-├── reputation_report.json   # generated output
-└── README.md
+â”œâ”€â”€ samples/
+â”‚   â””â”€â”€ ips.json
+â”œâ”€â”€ tests/
+â”‚   â””â”€â”€ test_reputation.py
+â”œâ”€â”€ reputation.py
+â”œâ”€â”€ reputation_report.json   # generated output
+â””â”€â”€ README.md
 ```
 
 Create a local `.env` file in this directory for your API key. Do not commit that file.
@@ -102,9 +102,9 @@ For each eligible address, the script requests the AbuseIPDB `/api/v2/check` end
 
 The output JSON has three top-level lists:
 
-- `checked` — successfully normalized provider results
-- `skipped` — values that failed the public IPv4 eligibility check
-- `errors` — eligible addresses whose request or response processing failed
+- `checked` â€” successfully normalized provider results
+- `skipped` â€” values that failed the public IPv4 eligibility check
+- `errors` â€” eligible addresses whose request or response processing failed
 
 The input and output paths are fixed relative to the script. Command-line input/output arguments are not currently implemented.
 
@@ -161,3 +161,8 @@ The API test uses a fake key and a mocked HTTP response. It does not contact Abu
 - Make the report age window configurable.
 - Add explicit rate-limit handling and retry/backoff behavior.
 - Accept validated IPv4 indicators from Lab 01 as an input source.
+
+
+## Execution Screenshot
+
+![IOC Reputation Checker execution](../docs/screenshots/02-ioc-reputation-checker.png)

@@ -252,4 +252,17 @@ __marimo__/
 06-ai-triage-assistant/triage_report.json
 06-ai-triage-assistant/triage_report.md
 
+# Generated security analysis reports
+**/indicators.json
+**/reputation_report.json
+**/detection_report.json
+**/process_tree_report.json
+**/real_process_tree_report.json
+**/enrichment_report.json
+**/triage_report.json
+**/triage_report.md
 
+# Python and test artifacts
+__pycache__/
+.pytest_cache/
+*.py[cod]

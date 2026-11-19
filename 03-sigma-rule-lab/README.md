@@ -1,4 +1,4 @@
-# 03 — Sigma Detection Rule Lab
+﻿# 03 â€” Sigma Detection Rule Lab
 
 A small Python detection-testing tool that loads a Sigma-style YAML rule and evaluates it against a JSON array of Windows process-creation events.
 
@@ -33,16 +33,16 @@ This lab provides a small, inspectable evaluator for one PowerShell detection ex
 
 ```text
 03-sigma-rule-lab/
-├── rules/
-│   └── powershell_encoded.yml
-├── samples/
-│   └── process_events.json
-├── tests/
-│   └── test_detector.py
-├── detector.py
-├── requirements.txt
-├── detection_report.json   # generated output
-└── README.md
+â”œâ”€â”€ rules/
+â”‚   â””â”€â”€ powershell_encoded.yml
+â”œâ”€â”€ samples/
+â”‚   â””â”€â”€ process_events.json
+â”œâ”€â”€ tests/
+â”‚   â””â”€â”€ test_detector.py
+â”œâ”€â”€ detector.py
+â”œâ”€â”€ requirements.txt
+â”œâ”€â”€ detection_report.json   # generated output
+â””â”€â”€ README.md
 ```
 
 ## Installation
@@ -100,8 +100,8 @@ The supplied rule is titled **PowerShell Encoded Command Execution**.
 
 It requires both of these selection fields to match:
 
-1. `Image|endswith` — the process image must end in `\powershell.exe` or `\pwsh.exe`.
-2. `CommandLine|contains` — the command line must contain one of the configured switches: `-EncodedCommand`, `-enc ` or `-e `.
+1. `Image|endswith` â€” the process image must end in `\powershell.exe` or `\pwsh.exe`.
+2. `CommandLine|contains` â€” the command line must contain one of the configured switches: `-EncodedCommand`, `-enc ` or `-e `.
 
 The evaluator applies:
 
@@ -129,7 +129,7 @@ The sample events are synthetic. Encoded PowerShell is not inherently malicious;
 
 ## MITRE ATT&CK
 
-The sample rule references [T1059.001 — PowerShell](https://attack.mitre.org/techniques/T1059/001/).
+The sample rule references [T1059.001 â€” PowerShell](https://attack.mitre.org/techniques/T1059/001/).
 
 ## Future improvements
 
@@ -138,3 +138,7 @@ The sample rule references [T1059.001 — PowerShell](https://attack.mitre.org/t
 - Convert rules to SIEM queries using pySigma backends.
 - Add additional Windows event categories and detection fixtures.
 - Add configurable event-field mappings.
+
+## Execution Screenshot
+
+![Sigma Detection Rule Lab execution](../docs/screenshots/03-sigma-rule-lab.png)

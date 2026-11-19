@@ -1,4 +1,4 @@
-# 04 — Process Tree Analyzer
+﻿# 04 â€” Process Tree Analyzer
 
 A Python SOC investigation tool that reconstructs parent-child process relationships from JSON-exported Sysmon Event ID 1 (Process Creation) records and flags selected suspicious process relationships.
 
@@ -34,14 +34,14 @@ The analyzer itself uses only the Python standard library. pytest is required fo
 
 ```text
 04-process-tree-analyzer/
-├── samples/
-│   ├── sysmon_events.json
-│   └── real_sysmon_events.json   # optional real endpoint sample
-├── tests/
-│   └── test_analyzer.py
-├── analyzer.py
-├── requirements.txt
-└── README.md
+â”œâ”€â”€ samples/
+â”‚   â”œâ”€â”€ sysmon_events.json
+â”‚   â””â”€â”€ real_sysmon_events.json   # optional real endpoint sample
+â”œâ”€â”€ tests/
+â”‚   â””â”€â”€ test_analyzer.py
+â”œâ”€â”€ analyzer.py
+â”œâ”€â”€ requirements.txt
+â””â”€â”€ README.md
 ```
 
 The repository may also contain generated reports such as `process_tree_report.json` and `real_process_tree_report.json`. These are outputs, not required source files.
@@ -133,3 +133,16 @@ Review real telemetry before publishing or sharing it. Remove or anonymize usern
 - Export a visual process tree.
 - Support configurable detection rules and Sigma integration.
 - Add more process-behavior tests and configurable allowlists.
+
+
+## Execution Screenshot
+
+![Process Tree Analyzer execution](../docs/screenshots/04-process-tree-analyzer.png)
+
+## Validation
+
+- 13 automated tests passed.
+- 6 synthetic events analyzed.
+- 3 suspicious process relationships detected.
+- 200 real Sysmon events successfully processed.
+- No suspicious relationships matched in the real sample.

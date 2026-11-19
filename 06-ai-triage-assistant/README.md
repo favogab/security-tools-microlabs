@@ -1,4 +1,4 @@
-# 06 — AI-Assisted Triage Assistant
+﻿# 06 â€” AI-Assisted Triage Assistant
 
 A Python application that validates a structured security alert and produces a structured triage assessment using either the OpenAI API or a deterministic offline mock provider.
 
@@ -36,14 +36,14 @@ This lab demonstrates structured alert validation, provider-based analysis and r
 
 ```text
 06-ai-triage-assistant/
-├── samples/
-│   └── alert.json
-├── tests/
-│   └── test_triage.py
-├── .env.example
-├── requirements.txt
-├── triage.py
-└── README.md
+â”œâ”€â”€ samples/
+â”‚   â””â”€â”€ alert.json
+â”œâ”€â”€ tests/
+â”‚   â””â”€â”€ test_triage.py
+â”œâ”€â”€ .env.example
+â”œâ”€â”€ requirements.txt
+â”œâ”€â”€ triage.py
+â””â”€â”€ README.md
 ```
 
 A local `.env` file is used for credentials and must not be committed. The generated `triage_report.json` and `triage_report.md` are output files.
@@ -148,3 +148,18 @@ The tests exercise the offline workflow and do not require API credits.
 - Add provider-independent interfaces and additional provider implementations.
 - Add tests for API failures, malformed responses and evidence-reference violations.
 - Add redaction controls before external AI submission.
+
+
+## Execution Screenshot
+
+![AI-Assisted Triage Assistant execution](../docs/screenshots/06-ai-triage-assistant.png)
+
+## Validation
+
+- 8 automated tests passed.
+- Offline mock provider executed successfully.
+- Alert severity assessed as high.
+- Incident status: needs investigation.
+- Confidence: low.
+- Human review required.
+- JSON and Markdown reports generated.
